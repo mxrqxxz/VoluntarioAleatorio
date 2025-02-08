@@ -5,6 +5,7 @@ import { Colores } from "./Colores";
 const { width, height } = Dimensions.get('window');
 
 export const GlobalStyles = StyleSheet.create({
+    //Login
     containerCentrado: {
         flex: 1,
         justifyContent: 'center',
@@ -54,4 +55,5 @@ export const GlobalStyles = StyleSheet.create({
     textoBoton:{
         fontFamily:'Koulen'
     }
+    //Otra cosa
 })
