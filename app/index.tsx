@@ -1,6 +1,6 @@
 import { View, Text, TextInput, Pressable, Alert, ImageBackground, ViewStyle } from 'react-native';
 import React from 'react'
-import { GlobalStyles } from '@/theme/GlobalStyles'
+import { GlobalStyles } from '@/src/theme/GlobalStyles'
 import { router } from 'expo-router'
 
 const Index = () => {
