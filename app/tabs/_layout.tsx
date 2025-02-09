@@ -9,6 +9,8 @@ const TabsLayout = () => {
         name="index"
         options={{
           title: 'Sorteo',
+          header: () => null,
+          headerShown: false,
           tabBarIcon: ({ color }) => <Ionicons  size={28} name="color-wand" color={color} />,
         }}
       />
@@ -16,6 +18,8 @@ const TabsLayout = () => {
         name="alumnos/index"
         options={{
           title:'Alumnos',
+          header: () => null,
+          headerShown: false,
           tabBarIcon: ({ color }) => <Ionicons size={28} name="people" color={color} />,
         }}
       />
