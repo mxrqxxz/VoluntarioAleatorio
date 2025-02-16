@@ -34,6 +34,9 @@ export const GlobalStyles = StyleSheet.create({
     line: {
         flexDirection: 'row',
     },
+    gap: {
+        gap: 10,
+    },
     boton: {
         backgroundColor: Colores.boton,
         paddingVertical: 5,
