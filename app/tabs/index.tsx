@@ -4,9 +4,11 @@ import { GlobalStyles } from '@/src/theme/GlobalStyles'
 import Voluntario from '@/src/components/Voluntario'
 import { Usuario } from '../models/Usuario';
 import { collection, getDocs, query } from 'firebase/firestore';
-import { db } from '@/Firebaseconfig';
+import { auth, db } from '@/Firebaseconfig';
 import { getAuth } from 'firebase/auth';
 import { router, useFocusEffect } from 'expo-router';
+import { useAudioPlayer } from 'expo-audio';
+import { Audio } from 'expo-av';
 
 const Sorteo = () => {
 
@@ -16,7 +18,7 @@ const Sorteo = () => {
 
   const user = getAuth().currentUser;
 
-  const coleccionUsuarios = collection(db,'Usuarios');
+  const coleccionUsuarios = collection(db, 'Usuarios');
   const [usuarios, setUsuarios] = useState<Usuario[]>([]);
 
   const [voluntario, setVoluntario] = useState<Usuario>({
@@ -42,7 +44,7 @@ const Sorteo = () => {
 
   useEffect(() => {
     cargarDatos();
-  },[user]);
+  }, [user]);
 
   // Usamos useFocusEffect para recargar los datos cada vez que se cambie de tab
   useFocusEffect(
@@ -55,7 +57,7 @@ const Sorteo = () => {
     if (user) {
       const q = query(coleccionUsuarios);
       const datos = await getDocs(q);
-  
+
       const usuariosFiltrados: Usuario[] = datos.docs
         .map((doc) => {
           const data = doc.data() as Usuario; // Asegurar que cumple con la interfaz
@@ -68,7 +70,7 @@ const Sorteo = () => {
           };
         })
         .filter((usuario) => usuario.bloqueado === false);
-  
+
       setUsuarios(usuariosFiltrados);
       console.log(usuariosFiltrados);
     }
@@ -81,17 +83,37 @@ const Sorteo = () => {
 
     // Verifica si la foto está en el objeto de imágenes locales
     const foto = voluntario.foto && imagenesLocales[voluntario.foto]
-    ? imagenesLocales[voluntario.foto] // Imagen local
-    : require('../../assets/images/interrogacion.png'); // Imagen por defecto
+      ? imagenesLocales[voluntario.foto] // Imagen local
+      : require('../../assets/images/interrogacion.png'); // Imagen por defecto
 
     setVoluntario({ ...voluntario, foto });
-    
+
   }
 
   // saca muchos voluntarios para dar emocion y se queda con el ultimo
   const ruletaVoluntarios = () => {
     for (let i = 0; i < 10; i++) {
       setTimeout(sacarVoluntario, i * 600);
+      
+      if (i === 9) {
+        setTimeout(playSound, i * 600);
+      }
+    }
+  }
+
+  const playSound = async () => {
+    const { sound } = await Audio.Sound.createAsync(
+      require('../../assets/audio/sonidoPremio.mp3')
+    );
+    
+    await sound.playAsync();
+  };
+
+  const signOut = async () => {
+    try {
+      await auth.signOut();
+    } catch (e) {
+      console.log(e);
     }
   }
 
@@ -102,9 +124,14 @@ const Sorteo = () => {
         <View style={GlobalStyles.contenedorTarjeta}>
           <Voluntario usuario={voluntario} />
         </View>
-        <Pressable style={GlobalStyles.botonVoluntario} onPress={ruletaVoluntarios}>
-          <Text style={GlobalStyles.textoBotonSorteo}>VOLUNTARIO ALEATORIO</Text>
-        </Pressable>
+        <View style={[GlobalStyles.line, GlobalStyles.gap]} >
+          <Pressable style={GlobalStyles.botonVoluntario} onPress={ruletaVoluntarios}>
+            <Text style={GlobalStyles.textoBotonSorteo}>VOLUNTARIO ALEATORIO</Text>
+          </Pressable>
+          <Pressable style={GlobalStyles.botonDesconectar} onPress={signOut}>
+            <Text style={GlobalStyles.textoBotonSorteo}>Desconectar</Text>
+          </Pressable>
+        </View>
       </View>
     </ImageBackground>
   )

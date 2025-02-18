@@ -117,6 +117,12 @@ export const GlobalStyles = StyleSheet.create({
         borderRadius: 10,
         width: 170,
     },
+    botonDesconectar: {
+        backgroundColor: Colores.bloqueado,
+        borderWidth: 1,
+        borderRadius: 10,
+        width: 100,
+    },
 
     // Alumnos
     containerLinea: {
