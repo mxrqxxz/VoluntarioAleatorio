@@ -7,9 +7,10 @@ import { db } from '@/Firebaseconfig';
 
 interface Props {
     usuario: Usuario;
+    refreshData: () => void;
 }
 
-const VoluntarioAvanzado = ({ usuario }: Props) => {
+const VoluntarioAvanzado = ({ usuario, refreshData }: Props) => {
 
     // Función para desbloquear al usuario
     const desbloquearUsuario = async () => {
@@ -17,6 +18,7 @@ const VoluntarioAvanzado = ({ usuario }: Props) => {
             const usuarioRef = doc(db, "Usuarios", usuario.id); // Referencia al documento en Firebase
             await updateDoc(usuarioRef, { bloqueado: false }); // Actualiza la propiedad en Firebase
             console.log(`Usuario ${usuario.nombre} desbloqueado correctamente`);
+            refreshData(); // Refresca los datos de la pantalla
         } catch (error) {
             console.error("Error al desbloquear usuario:", error);
         }
@@ -28,6 +30,7 @@ const VoluntarioAvanzado = ({ usuario }: Props) => {
             const usuarioRef = doc(db, "Usuarios", usuario.id); // Referencia al documento en Firebase
             await updateDoc(usuarioRef, { bloqueado: true }); // Actualiza la propiedad en Firebase
             console.log(`Usuario ${usuario.nombre} bloqueado correctamente`);
+            refreshData(); // Refresca los datos de la pantalla
         } catch (error) {
             console.error("Error al desbloquear usuario:", error);
         }

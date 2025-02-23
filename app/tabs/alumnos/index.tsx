@@ -84,7 +84,7 @@ const Alumnos = () => {
             paddingBottom: 20
           }}
           columnWrapperStyle={{ gap: 10 }}
-          renderItem={({ item }) => <VoluntarioAvanzado usuario={item} />}>
+          renderItem={({ item }) => <VoluntarioAvanzado refreshData={cargarDatos} usuario={item} />}>
 
         </FlatList>
       </View>

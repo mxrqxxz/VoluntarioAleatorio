@@ -2,9 +2,6 @@ import { StyleSheet,Dimensions } from "react-native"
 import { Colores } from "./Colores";
 import { Tamanos } from "./Tamanos";
 
-
-const { width, height } = Dimensions.get('window');
-
 export const GlobalStyles = StyleSheet.create({
     //Login
     containerCentrado: {
@@ -62,11 +59,12 @@ export const GlobalStyles = StyleSheet.create({
     // Tarjeta usuario
     containerExpand: {
         flex: 1,
-        justifyContent: 'space-around',
+        justifyContent: "center",
+        gap: 50,
         alignItems: 'center',
     },
     tarjeta: {
-        borderWidth: 1,
+        borderWidth: 2,
         borderColor: Colores.black,
         borderRadius: 10,
         backgroundColor: Colores.white,
@@ -88,7 +86,7 @@ export const GlobalStyles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        borderTopWidth: 1,
+        borderTopWidth: 2,
         borderBottomLeftRadius: 10,
         borderBottomRightRadius: 10,
     },
@@ -124,7 +122,7 @@ export const GlobalStyles = StyleSheet.create({
         backgroundColor: Colores.bloqueado,
         borderWidth: 1,
         borderRadius: 10,
-        width: 100,
+        width: 130,
     },
 
     // Alumnos
