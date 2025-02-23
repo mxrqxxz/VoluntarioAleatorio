@@ -21,12 +21,12 @@ export const GlobalStyles = StyleSheet.create({
         color:Colores.titulo,
     },
     input: {
-        width:300,
-        height: 40,
+        width:400,
+        height: 60,
         borderWidth: 0,
         backgroundColor:Colores.input,
         fontFamily:'RopaSans',
-        marginVertical:10,
+        marginVertical:20,
         borderRadius: 5,
         alignItems:'center',
         fontSize: Tamanos.input,
@@ -35,19 +35,19 @@ export const GlobalStyles = StyleSheet.create({
         flexDirection: 'row',
     },
     gap: {
-        gap: 10,
+        gap: 20,
     },
     boton: {
         backgroundColor: Colores.boton,
-        paddingVertical: 5,
-        paddingHorizontal: 25,
+        paddingVertical: 10,
+        paddingHorizontal: 45,
         borderRadius: 10,
         alignItems: 'center',
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.3,
         shadowRadius: 4,
-        marginTop:15,
+        marginTop:20,
     },
     background:{
         flex:1,
@@ -56,7 +56,8 @@ export const GlobalStyles = StyleSheet.create({
         alignItems:'center',
     },
     textoBoton:{
-        fontFamily:'Koulen'
+        fontFamily:'Koulen',
+        fontSize:Tamanos.boton,
     },
     // Tarjeta usuario
     containerExpand: {
@@ -69,8 +70,8 @@ export const GlobalStyles = StyleSheet.create({
         borderColor: Colores.black,
         borderRadius: 10,
         backgroundColor: Colores.white,
-        height: 150,
-        width: 100,
+        height: 250,
+        width: 135,
     },
     textoTarjeta: {
         fontFamily: 'RopaSans',
@@ -99,8 +100,8 @@ export const GlobalStyles = StyleSheet.create({
     },
     contenedorTarjeta: {
         backgroundColor: Colores.contenedorTarjeta,
-        width: 170,
-        height: 170,
+        width: 200,
+        height: 300,
         borderRadius: 10,
         justifyContent: 'center',
         alignItems: 'center',
@@ -109,13 +110,15 @@ export const GlobalStyles = StyleSheet.create({
         fontFamily: 'Koulen',
         color: Colores.black,
         textAlign: 'center',
+        fontSize:Tamanos.boton,
         padding: 5,
     },
     botonVoluntario: {
         backgroundColor: Colores.botonSorteo,
         borderWidth: 1,
         borderRadius: 10,
-        width: 170,
+        height:50,
+        width: 200,
     },
     botonDesconectar: {
         backgroundColor: Colores.bloqueado,
