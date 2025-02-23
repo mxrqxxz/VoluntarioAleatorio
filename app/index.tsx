@@ -12,13 +12,36 @@ const Index = () => {
 
   const logIn = async () => {
     try {
-      const user = await (signInWithEmailAndPassword(auth,email,password));
-      if (user) router.replace('/tabs')
-    } catch (error:any) {
-      console.log(error);
-      Alert.alert("Inicio de sesión incorrecto", "error.message");
+      const user = await signInWithEmailAndPassword(auth, email, password);
+      if (user) router.replace('/tabs');
+    } catch (error: any) {
+      console.log("Error de inicio de sesión:", error);
+
+      let errorMessage = "Ocurrió un error desconocido. Inténtalo de nuevo.";
+
+      // Manejo de errores específicos de Firebase Auth
+      switch (error.code) {
+        case "auth/missing-email":
+          errorMessage = "Introduce el correo.";
+          break;
+        case "auth/invalid-credential":
+          errorMessage = "Introduce correctamente el correo y la contraseña";
+          break;  
+        case "auth/invalid-email":
+          errorMessage = "El correo electrónico no es válido.";
+          break;
+        case "auth/missing-password":
+          errorMessage = "Contraseña no introducida";
+          break;
+        default:
+          errorMessage = error.message;
+          break;
+      }
+
+      Alert.alert("Inicio de sesión incorrecto", errorMessage);
     }
-  }
+  };
+
 
 
   const register = async () => {

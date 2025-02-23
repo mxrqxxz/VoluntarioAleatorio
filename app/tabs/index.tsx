@@ -90,13 +90,15 @@ const Sorteo = () => {
 
   }
 
-  // saca muchos voluntarios para dar emocion y se queda con el ultimo
+  // saca muchos voluntarios para dar emocion y se queda con el ultimo xdxd
   const ruletaVoluntarios = () => {
-    for (let i = 0; i < 10; i++) {
-      setTimeout(sacarVoluntario, i * 600);
-      
-      if (i === 9) {
-        setTimeout(playSound, i * 600);
+    for (let i = 0; i < 20; i++) {
+      // Aumento exponencial del tiempo
+      const delay = Math.pow(i, 2) * 10; // Aumenta de forma más pronunciada
+      setTimeout(sacarVoluntario, delay);
+
+      if (i === 19) {
+        setTimeout(playSound, delay);  // Ajusta el sonido al mismo tiempo
       }
     }
   }
